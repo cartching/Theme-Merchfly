@@ -1,0 +1,130 @@
+<!--/
+	Cartching Theme | Merchfly
+    Copyright (c) Cartching, 2011
+    http://cartching.com
+/-->
+
+<!-- #EXTENDS file="theme.html" -->
+
+
+
+<!-- #BLOCK for="pagetitle_area" -->
+
+	<!-- #IF {{blog}} -->
+    <!-- #ELSE -->
+    <div class="pagetitle_area">    
+	    <div id="pagetitle">
+        	<div class="container">
+
+				<h1>Doh!</h1>
+
+            </div>
+		</div>
+	</div>
+	<!-- #ENDIF -->
+
+<!-- #ENDBLOCK -->
+
+
+
+<!-- #BLOCK for="aside_area" -->
+
+
+    <!-- #IF {{blog}} -->
+    <div class="post-nav">
+
+        <!-- #IF {{blog.category}} -->
+            <h3>{{blog.category.name}} Posts</h3>
+        <!-- #ELSEIF {{blog.tag}} -->
+            <h3>{{blog.tag.name}} Posts</h3>
+        <!-- #ELSE -->
+            <h3>Blog Posts</h3>
+        <!-- #ENDIF -->
+
+        <ul>
+            <!-- #FOREACH{{ allblogpost in blog.articles | pick(25) }} -->
+            <li><em>{{ allblogpost.published | date('MMMM') }} {{ allblogpost.published | date('dd') }}, {{ allblogpost.published | date('yyyy') }}</em> <a href="{{allblogpost.url}}" title="Posted on {{allblogpost.published}} - Read full article">{{allblogpost.title | html_encode}}</a></li>
+            <!-- #NEXT -->
+        </ul>
+
+    </div>
+    <!-- #ENDIF -->
+
+
+<!-- #ENDBLOCK -->
+
+
+
+<!-- #BLOCK for="content_area" -->
+
+
+<!-- #IF {{blog}} -->
+	
+
+	<div class="post list hfeed">
+
+        <!-- #FOREACH {{post in blog.articles | pick(25) }} -->
+        <div id="post-{{post.slug}}" class="post-listitem hentry <!-- #IF {{post.category | html_encode}} -->category-{{post.category.slug}} <!-- #ENDIF -->post-{{post.slug}}">
+
+
+			<!-- #IF {{post.image}} -->
+			<div class="post-image"><img src="{{post.image}}-240x240.jpg" alt="{{post.title | html_encode}}" /></div>
+			<!-- #ENDIF -->
+
+			<div class="preview">
+
+                <!-- #IF {{post.category | html_encode}} -->
+                <p class="post-category"><a href="{{post.category.url}}">{{post.category | html_encode}}</a></p>
+                <!-- #ENDIF -->
+    
+                <h2 class="entry-title">
+                    <a rel="bookmark" href="{{post.url}}">{{post.title | html_encode}}</a>
+                    <!-- #IF {{store.loggedin}} --><a class="store-edit" href="{{post.editurl}}">(Edit)</a><!-- #ENDIF -->
+                </h2>
+                
+                <div class="info">
+                    <dl class="published-info">
+                        <dt>Published on</dt>
+                        <dd><abbr class="date published" title="{{post.published | date}}">{{post.published | date}}</abbr></dd>
+                    </dl>
+                    <dl class="author-info">
+                        <dt>Posted by</dt>
+                        <dd class="author vcard">
+                            <span class="fn">{{post.author | html_encode}}</span>
+                        </dd>
+                    </dl>
+                </div>
+    
+                <!-- #IF {{post.excerpt | strip_html }} -->
+                <p class="entry-excerpt">{{post.excerpt | strip_html }}</p>
+                <!-- #ENDIF -->
+    
+                <!-- # IF { { post.content } } -->
+                <!-- div class="entry-content">{ { post.content } }</div -->
+                <!-- # ENDIF -->
+    
+                <p class="permalink"><a class="permalink" title="Read more from {{post.title | html_encode}}" href="{{post.url}}">Permalink</a></p>
+    
+                <!-- #IF {{post.tags}} -->
+                <p class="tags"><strong>Tags:</strong><!-- #FOREACH {{tag in post.tags}} --> <a href="{{tag.url}}">{{tag}}</a><!-- #NEXT --></p>
+                <!-- #ENDIF -->
+
+			</div>
+
+			<div class="clear"></div>
+
+		</div>
+		<!-- #NEXT -->
+
+	</div>
+	<!-- // -->
+
+
+<!-- #ELSE -->
+
+	<h2>Doh! No Posts Yet</h2>
+
+<!-- #ENDIF -->
+
+
+<!-- #ENDBLOCK -->

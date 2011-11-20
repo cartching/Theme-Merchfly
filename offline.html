@@ -1,0 +1,108 @@
+<!--/
+	Cartching Theme | Merchfly
+    Copyright (c) Cartching, 2011
+    http://cartching.com
+/-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head profile="http://purl.org/uF/2008/03/ http://purl.org/uF/hAtom/0.1/">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>{{page.title | html_encode}} | {{store | html_encode}}</title>
+
+<meta http-equiv="imagetoolbar" content="false" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="index, follow" />
+<meta name="distribution" content="global" />
+<meta name="copyright" content="{{store | html_encode}}, {{store.url}}" />
+<meta name="author" content="{{store.url}}" />
+<meta name="keywords" content="{{page.keywords | html_encode}}" />
+<meta name="description" content="{{page.description | html_encode}}" />
+
+<link rel="author" href="{{store.url}}" />
+<link rel="canonical" href="{{page.url}}" />
+<link rel="home" title="home" href="{{store.url}}" />
+<link rel="shortcut icon" href="{{store.files}}/favicon.ico" type="image/x-icon" />
+<!-- <link rel="stylesheet" type="text/css" href="http://static.merchfly.com/themes/vanilla/theme.css" media="screen" /> -->
+<link rel="stylesheet" type="text/css" href="/themes/merchfly/files/theme.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="{{store.files}}/custom.css" media="screen" />
+
+<script type="text/javascript" src="http://cachedcommons.org/cache/jquery/1.4.2/javascripts/jquery-min.js"></script>
+
+<!-- #IF {{snippets.head-content}} -->
+{{snippets.head-content}}
+<!-- #ELSE -->
+    <!-- 
+        //	- Add a Snippet named "Head Content"
+        //	Example -
+	    //		<meta name="google-site-verification" content="" />
+    	//		<meta name="verify-v1" content="" />
+    -->
+<!-- #ENDIF -->
+
+</head>
+
+<body id="{{page.id}}" class="{{page.id}} {{page.template}}">
+
+
+<a name="top"></a>
+
+<div class="wrapper">
+
+
+    <div class="header_area">
+        <div id="header">
+        	<div class="container">                        
+                
+                <div id="logo">
+                    <h2><a href="{{store.url}}" title="{{store | html_encode}}">{{store | html_encode}}</a></h2>
+                    <!-- #IF {{page.description}} --><p>{{store.description | html_encode}}</p><!-- #ENDIF -->
+                </div>
+                    
+        	</div>
+        </div>
+    </div>
+
+
+    <div class="content_area">    
+		<div id="content" class="content">
+    
+            <h1>Oh Bugger! We are Offline</h1>
+            <h4>Sorry for the inconvenience.</h4>
+
+       </div>
+    </div>       
+
+       
+
+	<div class="copyright_area">
+        <div id="copyright">
+        	<div class="container">
+
+                <div class="merchfly">
+                <a href="http://merchfly.com/" title="Make yourself a FREE website to sell your products, be up and running in 5 minutes! Its quick and simple with secure online payments. No lock-in contracts, No knowledge of web page design or website hosting required. Advanced features also available from $30/month.">Merchfly</a>
+                </div>
+                
+                <div class="cite">
+                <p><cite><abbr>&copy;</abbr> {{store | html_encode}} {{now.year}}.</cite></p>
+                </div>
+
+			</div>
+        </div>
+	</div>
+
+   
+</div>
+
+<!-- #IF {{snippets.script-content}} -->
+{{snippets.script-content}}
+<!-- #ELSE -->
+    <!-- 
+        // - Add a Snippet named "Script Content"
+        // Like your Google Anayltics Code    
+    -->
+<!-- #ENDIF -->
+
+</body>
+</html>

@@ -1,0 +1,206 @@
+﻿<!--/
+	Cartching Theme | Merchfly
+    Copyright (c) Cartching, 2011
+    http://cartching.com
+/-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head profile="http://purl.org/uF/2008/03/ http://purl.org/uF/hAtom/0.1/">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>{{page.title | html_encode}} | {{store | html_encode}}</title>
+
+<meta http-equiv="imagetoolbar" content="false" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="index, follow" />
+<meta name="distribution" content="global" />
+<meta name="copyright" content="{{store | html_encode}}, {{store.url}}" />
+<meta name="author" content="{{store.url}}" />
+<meta name="keywords" content="{{page.keywords | html_encode}}" />
+<meta name="description" content="{{page.description | html_encode}}" />
+<meta property="og:site_name" content="{{store | html_encode}}" />
+<meta property="og:title" content="{{page.title | html_encode}}" />
+
+<link rel="author" href="{{store.url}}" />
+<link rel="canonical" href="{{page.url}}" />
+<link rel="home" title="home" href="{{store.url}}" />
+<link rel="shortcut icon" href="{{store.files}}/favicon.ico" type="image/x-icon" />
+<!-- <link rel="stylesheet" type="text/css" href="http://static.merchfly.com/themes/vanilla/theme.css" media="screen" /> -->
+<link rel="stylesheet" type="text/css" href="/themes/merchfly/files/theme.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="{{store.files}}/custom.css" media="screen" />
+
+<script type="text/javascript" src="http://cachedcommons.org/cache/jquery/1.4.2/javascripts/jquery-min.js"></script>
+
+<!-- #BLOCK name="head_content" -->
+<!-- #ENDBLOCK -->
+
+<!-- #IF {{snippets.head-content}} -->
+{{snippets.head-content}}
+<!-- #ELSE -->
+    <!-- 
+        //	- Add a Snippet named "Head Content"
+        //	Example -
+	    //		<meta name="google-site-verification" content="" />
+    	//		<meta name="verify-v1" content="" />
+    -->
+<!-- #ENDIF -->
+
+</head>
+
+<!-- #BLOCK name="body_tag" -->    
+<body id="{{page.id}}" class="{{page.id}} {{page.template}}">
+<!-- #ENDBLOCK -->
+
+<a name="top"></a>
+
+<div class="wrapper">
+
+
+    <div class="header_area">
+        <div id="header">
+        	<div class="container">                        
+                
+                <div id="logo">
+                    <h2><a href="{{store.url}}" title="{{store | html_encode}}">{{store | html_encode}}</a></h2>
+                    <!-- #IF {{page.description}} --><p>{{page.description | html_encode}}</p><!-- #ENDIF -->
+                </div>                    
+    
+        	</div>
+        </div>
+    </div>
+
+
+
+	<!-- #IF {{links.nav}} -->
+	<div class="nav_area">	
+		<div id="nav">
+        	<div class="container">
+
+			<ul class="nav-links">
+				<!-- #FOREACH {{link in links.nav}} -->
+				<li class="nav-{{link.slug}}"><a href="{{link.url}}" title="{{link.name | html_encode}}">{{link.name | html_encode}}</a></li>
+				<!-- #NEXT -->
+			</ul>
+
+			</div>    
+		</div>
+	</div>
+	<!-- #ENDIF -->
+ 
+
+
+    <!-- #IF {{page.hasmessage}} -->
+    <div class="pagemsg_area">    
+	    <div id="pagemsg" class="msg-{{page.messagetype|lowercase}}">
+        	<div class="container">
+    
+                <a href="#" class="close" onClick="$('#pagemsg').slideUp();" title="Click to Close">Close</a>
+                <!-- #IF {{page.hasmessagetitle}} --><h3>{{page.messagetitle}}</h3><!-- #ENDIF -->
+                <!-- #IF {{page.hasmessagedetails}} --><p>{{page.messagedetails}}</p><!-- #ENDIF -->
+
+			</div>    
+        </div>
+    </div>
+    <!-- #ENDIF -->
+
+
+    
+    <!-- #BLOCK name="pagetitle_area" -->    
+    <div class="pagetitle_area">    
+	    <div id="pagetitle">
+        	<div class="container">
+            
+            	<h1>{{page.title | html_encode}}</h1>
+            
+            </div>
+		</div>
+	</div>
+    <!-- #ENDBLOCK -->
+
+
+    
+    <div class="content_area">
+        <div id="content">
+            <div class="container">
+            <!-- #BLOCK name="content_area" -->
+            <!-- #ENDBLOCK -->
+            </div>
+        </div>
+	</div>
+ 
+
+
+	<div class="footer_area">    
+	    <div id="footer">
+        	<div class="container">
+
+                <div class="addthis"><a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=cartchingapp"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" /></a>
+                </div>
+
+                <div class="nav">
+                    <ul>
+                        <!-- #IF {{snippets.footer-nav}} -->
+                        {{snippets.footer-nav}}
+                        <!-- #ELSE -->
+                        <li><a href="{{store.url}}">Home</a></li>
+                        <!-- 
+                        
+                        // - Add a Snippet named "Footer Nav"    
+                        // - Add List Item and Link
+                    
+                            <li> <a href="http://"> Text </a> </li>
+                        
+                        -->
+		                <!-- #ENDIF -->
+                        <!-- #IF {{cart.items.count}} -->
+                        <li class="viewcart"><a href="/cart/" class="viewcart" title="View your Shopping Cart">View Cart</a></li>
+		                <!-- #ENDIF -->
+                    </ul>
+				</div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+	<div class="copyright_area">
+        <div id="copyright">
+        	<div class="container">
+
+                <div class="merchfly">
+                <a href="http://merchfly.com/" title="Make yourself a FREE website to sell your products, be up and running in 5 minutes!  Its quick and simple with secure online payments.  No lock-in contracts, No knowledge of web page design or website hosting required. Advanced features also available from $30/month.">Merchfly</a>
+                </div>
+                
+                <div class="cite">
+                <p><cite><abbr>&copy;</abbr> {{store | html_encode}} {{now.year}}. All prices <abbr title="{{store.currency_name}}">{{store.currency}}</abbr>.</cite></p>
+                </div>
+
+			</div>
+        </div>
+	</div>
+
+   
+
+</div>
+
+<!--	<script type="text/javascript" src="http://static.merchfly.com/themes/vanilla/main.js"></script>	-->
+<script type="text/javascript" src="/themes/merchfly/files/main.js"></script>
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=cartchingapp"></script>
+
+<!-- #BLOCK name="script_content" -->
+<!-- #ENDBLOCK -->
+
+<!-- #IF {{snippets.script-content}} -->
+{{snippets.script-content}}
+<!-- #ELSE -->
+    <!-- 
+        // - Add a Snippet named "Script Content"
+        // Like your Google Anayltics Code    
+    -->
+<!-- #ENDIF -->
+
+</body>
+</html>

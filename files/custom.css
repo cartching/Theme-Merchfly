@@ -1,0 +1,45 @@
+/*
+#
+#	Custom Css Template Override
+#	helm.merchfly.com
+#
+*/
+
+html body { background:#222;  }
+
+/* Logo */
+div#logo { margin:0 0 20px; }
+div#logo h2 a { background:url(http://helm.merchfly.com/files/ghostatthehelm-header.png) no-repeat top center; display:block; height:191px; text-indent:-9000px; }
+div#logo p { display:none; }
+
+/* Nav */
+div.nav_area { overflow:auto; margin:0; width:auto; border:none; background:#444; }
+div#nav { margin:0 auto; position:relative; width:1000px; }
+div#nav div.container { margin-left:5px; margin-right:5px; border:none; }
+
+div#nav ul.nav-links li { font-size:16px; }
+div#nav ul.nav-links li:first-child { margin-left:20px; }
+div#nav ul.nav-links li a { color:#fff;  }
+div#nav ul.nav-links li a:hover,
+div#nav ul.nav-links li a.active { color:#ccc; }
+div#nav ul.nav-links li a.active { background:none; }
+
+/* Content */
+div.content_area { overflow:auto; margin:0; padding:20px 0; width:auto; background:#fff; }
+div#content div.container { border:none; }
+
+div#content,
+div.page { margin:0 auto; position:relative; width:1000px; }
+
+/* Page Title */
+div.pagetitle_area { overflow:auto; margin:0; width:auto; background:#fff; }
+div#pagetitle { margin:0 auto; position:relative; width:1000px; }
+div#pagetitle div.container { margin-left:5px; margin-right:5px; border:none; }
+
+/* Page Message */
+div.pagemsg_area { left:50%; margin-left:-400px; position:fixed; top:40px; width:800px; z-index:100; }
+div#pagemsg { opacity:0.95;filter:alpha(opacity=95); }
+
+/* Footer */
+div#footer { margin-top:10px; }
+div#footer div.container { border:none; }

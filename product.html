@@ -1,0 +1,195 @@
+<!--/
+	Cartching Theme | Merchfly
+    Copyright (c) Cartching, 2011
+    http://cartching.com
+/-->
+
+<!-- #EXTENDS file="theme-simple.html" -->
+
+
+
+<!-- #BLOCK for="pagetitle_area" -->
+<!-- #ENDBLOCK -->
+
+
+
+<!-- #BLOCK for="content_area" -->
+
+
+	<!-- begin product-item -->
+	<div class="hproduct product-item">
+
+		<div class="product-item-images_area">
+
+			<div class="product-photo"><img class="photo" src="{{product.image}}-500x750.jpg" alt="{{product.name | html_encode}} / {{product.price | money}}" /></div>
+	
+            <!-- #IF {{product.images}} -->
+    		<div class="product-photos">
+                <ul>
+					<!-- #FOREACH {{image in product.Images}} -->
+					<li><a rel="lightbox-tour" title="{{product.name | html_encode}} - {{product.price | money}}" href="{{image.url}}-640x640.jpg"><img src="{{image.url}}-75x75.jpg" alt="{{image.title | html_encode}}" /></a></li>
+					<!-- #NEXT -->										
+				</ul>			
+			</div>
+            <!-- #ENDIF -->
+
+			<div class="clear"></div>
+
+		</div>
+		
+
+
+		<div class="product-item-info_area">
+   
+
+            <h1 title="{{product.name | html_encode}}">{{product.name | html_encode}} <!-- #IF {{store.loggedin}} --><a class="store-edit" href="{{product.editurl}}">(Edit)</a><!-- #ENDIF --></h1>
+
+            <h2 class="price retail">
+                <span class="currency">{{store.currency_sign}}</span><span class="dollars">{{product.price | money_dollars}}</span><!-- #IF {{product.price | money_cents}} --><span class="cents">.{{product.price | money_cents}}</span><!-- #ENDIF --></h2>
+                
+            <!-- #IF {{product.onsale}} -->
+            <p class="price sale">was <del><span class="currency">{{store.currency_sign}}</span><span class="dollars">{{product.fullprice | money_dollars}}</span>
+                <!-- #IF {{product.fullprice | money_cents}} --><span class="cents">.{{product.fullprice | money_cents}}</span><!-- #ENDIF -->
+            </del></p>
+            <!-- #ENDIF -->
+            
+            <p class="product-details">
+                <!-- #IF {{cart.taxesincluded}} --><span class="inctax">Includes Tax.</span><!-- #ENDIF -->
+                <!-- #IF {{product.sku}} --><span class="identifier sku"><label class="type">sku:</label> <span class="value">{{product.sku | html_encode}}</span></span><!-- #ENDIF -->
+            </p>
+			
+
+			<!-- begin product-add -->
+			<div class="product-add">
+
+                <!-- #IF {{product.description}} -->
+                <div class="product-description html">{{product.description}}</div>
+                <!-- #ENDIF -->
+					
+				
+				<!-- #IF {{product.disabled}} -->
+			
+					<!-- #IF {{product.variations}} -->
+			
+						<!-- #FOREACH {{variation in product.variations}} -->
+							<p class="variation">
+								<strong>{{variation}}:</strong>
+								<!-- #FOREACH {{option in variation.options}} -->
+								   {{option | html_encode}}, 
+								<!-- #NEXT -->
+							</p>
+						<!-- #NEXT -->
+			
+					<!-- #ELSEIF {{product.variation}} -->
+			
+						<p class="variation">
+							<p class="variation">
+								<strong>{{product.variation}}:</strong>
+								<!-- #FOREACH {{option in product.variation.options}} -->
+								   {{option | html_encode}}, 
+								<!-- #NEXT -->
+							</p>
+						</p>
+			
+					<!-- #ENDIF -->
+			
+					<h4>Unavailable for online purchase.</h4>
+					<p>Please <a href="/contact/">email</a> us if you're interested in this product.</p>
+			
+			
+				<!-- #ELSE -->
+			
+			
+					<form action="/cart/add" method="post" id="form-product">
+					<input type="hidden" name="returnurl" value="/cart/" />
+					<input type="hidden" name="product" value="{{product.id}}" />
+			
+					<fieldset>
+						<legend>Add to Cart</legend>
+			
+						<ul class="product-variation">
+						<!-- #IF {{product.variations}} -->
+			
+							<!-- #FOREACH {{variation in product.variations}} -->
+								<li class="variation">
+									<label>{{variation}}</label>
+									<select name="variation" class="select">
+										<!-- #FOREACH {{option in variation.options}} -->
+										   <option value="{{option.id}}">{{option | html_encode}}</option>
+										<!-- #NEXT -->
+									</select>
+								</li>
+							<!-- #NEXT -->
+
+						<!-- #ELSEIF {{product.variation}} -->
+							
+							<li class="variation">
+                                <label>{{product.variation}}</label>
+
+                                <!-- #FOREACH {{option in product.variation.options}} -->
+                                
+                                    <span class="{{ option.soldout | if('soldout','instock') }}">
+                                        <input name="variation" type="radio" value="{{option.id}}" class="radio" {{ option.soldout|if('disabled','') }} />
+                                        <label for="{{option.id}}">{{option | html_encode}}</label>
+                                        <em>
+                                        <!-- #IF {{ option.soldout }} -->
+                                            Sold Out
+                                        <!-- #ELSE -->                                        
+                                        	<!-- #IF {{store.loggedin}} -->
+	                                            <!-- #IF {{option.stocklevel}} -->{{option.stocklevel}}<!-- #ENDIF --> Instock
+                                            <!-- #ENDIF -->                                          
+                                        <!-- #ENDIF -->
+                                        </em>
+                                    </span>
+                                
+                                <!-- #NEXT -->
+
+								</li>
+							
+						<!-- #ENDIF -->
+							
+							<li class="quantity">
+								<label>Quantity</label>
+								<input id="quantity" name="quantity" type="text" value="1" maxlength="4" class="text" title="Quantity" />
+							</li>
+							
+							<li class="addtocart">
+
+                            	<button type="submit" id="addtocart" class="button addtocart" title="Add To Cart">Add To Cart</button>
+
+								<!-- #IF {{cart.items.count}} -->
+								<a href="/cart/" class="viewcart" title="View your Shopping Cart">View Cart</a>
+								<!-- #ENDIF -->
+							</li>
+			
+						</ul>
+			
+					</fieldset>
+					</form>
+			
+			<!-- #ENDIF -->
+			
+			
+			</div>
+			<!-- end product-add -->
+
+
+
+
+		</div>
+		<!-- end -->
+
+		
+	<div class="clear"></div>
+
+	</div>
+	<!-- end product-item -->
+
+	
+<!-- #ENDBLOCK -->
+
+
+
+<!-- #BLOCK for="script_content" -->
+<script type="text/javascript" src="http://static.merchfly.com/themes/vanilla/jquery.lightbox.js"></script>
+<!-- #ENDBLOCK -->

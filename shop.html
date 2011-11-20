@@ -1,0 +1,74 @@
+<!--/
+	Cartching Theme | Merchfly
+    Copyright (c) Cartching, 2011
+    http://cartching.com
+/-->
+
+<!-- #EXTENDS file="theme.html" -->
+
+
+<!-- #BLOCK for="pagetitle_area" -->
+<!-- #ENDBLOCK -->
+
+
+
+<!-- #BLOCK for="content_area" -->
+
+
+    <!-- #IF {{snippets.shop-page-callout}} -->
+    <div id="shop-page-callout" class="shop-page-callout">{{snippets.shop-page-callout}}</div>
+    <!-- #ELSE -->
+    <!-- 
+    
+    // - Add a Snippet named "Shop Page Callout"    
+    // - Add Links, Images
+
+    <div id="shop-page-callout" class="shop-page-callout">
+
+		<a href="http://"><img src="http://" alt="" /></a>
+    
+    </div>
+	-->
+    <!-- #ENDIF -->
+
+
+	<!-- #IF {{products.all}} -->
+    <div class="product-list featured">
+    
+        <!--#FOREACH {{product in products.all | shuffle | pick(9) }} -->
+        <div class="hproduct product-listitem {{product.slug}}">
+        <div class="inner">
+
+            <div class="product-photo"><a title="{{product.name | html_encode}} / {{product.price | money}}" href="{{product.url}}" class="url" rel="product"><img src="{{product.image}}-240x240-90.jpg" alt="{{product.excerpt | html_encode}}" class="photo" /></a></div>
+
+            <p class="price">
+                <!-- #IF {{product.onsale}} -->
+                <del><span class="currency">{{store.currency_sign}}</span><span class="dollars">{{product.fullprice | money_dollars}}</span><!-- #IF {{product.fullprice | money_cents}} --><span class="cents">.{{product.fullprice | money_cents}}</span><!-- #ENDIF --></del>
+                <!-- #ENDIF -->
+                <span class="currency">{{store.currency_sign}}</span><span class="dollars">{{product.price | money_dollars}}</span><!-- #IF {{product.price | money_cents}} --><span class="cents">.{{product.price | money_cents}}</span><!-- #ENDIF -->
+            </p>
+
+            <h4 class="title" title="{{product.name | html_encode}} / {{product.price | money}}"><a href="{{product.url}}" class="url" rel="product" title="{{product.name | html_encode}}">{{product.name | html_encode}}</a> <!-- #IF {{store.loggedin}} --><a class="store-edit" href="{{product.editurl}}">(Edit)</a><!-- #ENDIF --></h4>
+
+		</div>
+        </div>
+        <!--#NEXT -->
+    
+        <div class="clear"></div>
+        
+    </div>
+
+
+    <!-- #ELSE -->
+
+	<div class="hasnoitems">
+    
+        <h2>Doh! Nothing added yet</h2>
+
+	</div>
+    
+    <!-- #ENDIF -->    
+
+
+
+<!-- #ENDBLOCK -->

@@ -1,0 +1,160 @@
+<!--/
+	Cartching Template 000 Skeletor
+	http://cartching.com | Copyright (c) Cartching, 2010
+/-->
+
+<html>
+<head>
+	<style type="text/css">
+		body { margin:0; }
+		td, p, li { font:10pt Arial; color:#000000; }
+		h2,h3 { font:14pt Arial; color:#444444; font-weight:normal; }
+	</style>
+</head>
+<body style="margin:0;">
+
+
+
+<table style="width:100%;" cellpadding="0" cellspacing="0" border="0">
+		<tr>
+				<td style="padding:20px 30px 10px 10px; border-bottom:1px solid #cccccc;">
+				<h1 style="color:#222222; margin:0; padding:0; font:20pt Arial; font-weight:normal;">Order Update</h1>
+			</td>
+				<td style="padding:20px 30px 10px 0; border-bottom:1px solid #cccccc; text-align:right; vertical-align:bottom;"><h3 style="color:#222222; margin:0; padding:0; font:15pt Arial; font-weight:normal;"><a href="{{store.url}}" style="color:#00ADEF; text-decoration:underline;">{{store | html_encode}}</a></h3></td>
+		</tr>
+		<tr>
+		  <td style="padding:10px" colspan="2">
+          
+            <h2 style="margin-bottom:0.6em;"><span style="color:#000000;">{{order.customer}}</span> your order placed on {{order.placed | format_datetime}} has been updated.</h2>            
+            
+		<h3 style="margin-bottom:0.3em; border-bottom:1px solid #ccc;">Payment Details</h3>
+        
+		<ul style="list-style:disc;">
+		  	<li><strong>Invoice #{{Order.number}}</strong></li>
+			<li>Order Status: {{Order.Status | uppercase}}</li>
+			<li>Payment Method: <strong style="color:#F36">{{Order.PaymentMethod | uppercase}}</strong></li>
+			<li>Payment Details: {{Order.PaymentDetails}}</li>
+		</ul>
+ 		
+		<h3 style="margin-bottom:0.3em; border-bottom:1px solid #ccc;">Your Details</h3>
+		<ul style="list-style:disc;">
+			<li>Customer Name: <strong>{{order.customer}}</strong></li>
+
+            <!-- #IF {{order.customer}} -->
+          <li>Order Name: <strong>{{order.customer}}</strong></li>
+            <!-- #ELSE -->
+            <!-- #ENDIF -->
+
+
+    <li>Email: <a href="mailto:{{Order.CustomerEmail}}" style="color:#00ADEF; text-decoration:underline;">{{Order.CustomerEmail}}</a></li>
+			<!-- #IF {{Order.CustomerPhone}} -->
+			<li>Phone: {{Order.CustomerPhone}}</li>
+			<!-- #ENDIF -->
+		</ul>
+
+		<h3 style="margin-bottom:0.3em; border-bottom:1px solid #ccc;">Deliver To</h3>
+		<ul style="list-style:disc;">
+			<li>Address: {{Order.shippingaddress.Street}}</li>
+			<!-- #IF {{Order.shippingaddress.Street2}} -->
+			<li>{{Order.shippingaddress.Street2}}</li>
+			<!-- #ENDIF -->
+			<li>City: {{Order.shippingaddress.City}}</li>
+			<li>State: {{Order.shippingaddress.State}}</li>
+			<li>Postcode: {{Order.shippingaddress.PostCode}}</li>
+			<li>Country: {{Order.shippingaddress.Country}}</li>
+		</ul>
+		
+        <br>
+
+		<h3 style="margin-bottom:0.3em; border-bottom:1px solid #ccc;">Order Details</h3>
+		<table cellspacing="0" style="width:100%;">
+			<thead>
+				<tr>
+					<td style=" border-bottom:1px solid #555555; padding:10px 3px 3px 3px; font-weight:bold;">Code</td>
+					<td style=" border-bottom:1px solid #555555; padding:10px 3px 3px 3px; font-weight:bold;">Name</td>
+					<td style=" border-bottom:1px solid #555555; padding:10px 3px 3px 3px; font-weight:bold;">Qty</td>
+					<td style=" border-bottom:1px solid #555555; padding:10px 3px 3px 3px; font-weight:bold;">Price</td>
+					<td style=" border-bottom:1px solid #555555; padding:10px 3px 3px 3px; font-weight:bold; width:150px;">Total</td>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- #FOREACH {{OrderItem in Order.Items}} -->
+				<tr>
+					<td style=" border-bottom:1px solid #ccc; padding:3px;">{{OrderItem.Code}}</td>
+					<td style=" border-bottom:1px solid #ccc; padding:3px;">{{OrderItem.Name}}<!-- #IF {{OrderItem.Attributes}} --> - {{OrderItem.Attributes}}<!-- #ENDIF --></td>
+					<td style=" border-bottom:1px solid #ccc; padding:3px;">{{OrderItem.Quantity}}</td>
+					<td style=" border-bottom:1px solid #ccc; padding:3px;">{{OrderItem.UnitPrice | money}}</td>
+					<td style=" border-bottom:1px solid #ccc; padding:3px;">{{OrderItem.QtyPrice | money}} <!-- #IF {{order.taxesincluded}} -->(incl. Tax)<!-- #ELSE --><!-- #ENDIF --></td>
+				</tr>
+				<!-- #NEXT -->
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="4" align="right" style=" border-bottom:1px solid #ccc; padding:3px 12px 3px 3px;">Sub Total:</td>
+					<td style=" border-bottom:1px solid #ccc; padding:3px; font-weight:bold;">{{order.subtotal | money}}</td>
+				</tr>
+				<tr>
+					<td colspan="4" align="right" style=" border-bottom:1px solid #ccc; padding:3px 12px 3px 3px;">Delivery:</td>
+					<td style=" border-bottom:1px solid #ccc; padding:3px;">{{order.shipping.carrier}}</td>
+				</tr>
+				<tr>
+					<td colspan="4" align="right" style=" border-bottom:1px solid #ccc; padding:3px 12px 3px 3px;">Shipping:</td>
+					<td style=" border-bottom:1px solid #ccc; padding:3px;">{{order.shipping.cost | money}}</td>
+				</tr>
+
+                <!-- #IF {{order.coupon}} -->
+                <tr id="discount">
+                    <td colspan="4" align="right" style=" border-bottom:1px solid #ccc; padding:3px 12px 3px 3px;"><em>{{order.coupon.name}}</em> | Discount <strong>({{order.discount.percentage}}%)</strong>:</td>
+                    <td style=" border-bottom:1px solid #ccc; padding:3px;"><span>{{order.discount.amount | money}}</span></td>
+                </tr>
+                <!-- #ENDIF -->
+
+				<tr>
+					<td colspan="4" align="right" style=" border-bottom:1px solid #ccc; padding:3px 12px 3px 3px;">Tax <!-- #IF {{order.taxesincluded}} --><!-- #ELSE -->({{Order.TaxPercentage}}%)<!-- #ENDIF -->:</td>
+					<td style=" border-bottom:1px solid #ccc; padding:3px;">
+
+                        <span>{{order.taxamount | money}}</span>
+                    
+                    </td>
+				</tr>
+				<tr>
+					<td colspan="4" align="right" style=" border-bottom:1px solid #ccc; padding:12px 3px 12px 3px; font-size:14pt;">Total:</td>
+					<td style="border-bottom:1px solid #ccc; padding:12px 3px 12px 3px; font-size:14pt;">{{order.totalprice | money}} {{store.currency}}</td>
+				</tr>
+			</tfoot>
+		</table>
+
+		<h3 style="margin-bottom:0;">Instructions to Store</h3>
+
+
+        <!-- #IF {{order.customer}} -->
+        <p>Order Name: <strong>{{order.customer}}</strong></p>
+        <!-- #ENDIF -->
+
+        <!-- #IF {{order.comments}} -->
+            <p>{{order.comments}}</p>
+		<!-- #ELSE -->
+        	<p>No Special Instructions</p>
+		<!-- #ENDIF -->
+    
+
+			</td>
+		</tr>
+		<tr>
+        	<td colspan="2" style="padding:10px 30px 0 10px; border-top:1px solid #cccccc;">
+            	<p style="font-size:10pt;">Thank you for supporting {{store | html_encode}}. Let us know if there is anything else we can do to help.</p>
+            </td>
+		</tr>
+    	<tr>
+			<td colspan="2" style="padding:6px 10px 10px 0; text-align:right;">
+		    <h1 style="color:#222222; margin:0; padding:0; font:12pt Arial; font-weight:normal;">{{store | html_encode}}</h1>
+				<h2 style="font:11pt Arial; color:#222222; font-weight:normal; margin:0; padding:0;">
+					<a href="{{store.url}}" style="color:#222222; text-decoration:none;">{{store.url}}</a>
+				</h2>
+                <p style="font-size:7pt;">Copyright &copy; {{store | html_encode}} {{now.year}}.</p>
+			</td>
+		</tr>
+</table>
+
+</body>
+</html>

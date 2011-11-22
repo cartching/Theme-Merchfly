@@ -21,13 +21,13 @@
 
 		<div class="product-item-images_area">
 
-			<div class="product-photo"><img class="photo" src="{{product.image}}-500x750.jpg" alt="{{product.name | html_encode}} / {{product.price | money}}" /></div>
+			<div class="product-photo"><img class="photo" src="{{product.image}}?w=500&h=750&crop=false" alt="{{product.name | html_encode}} / {{product.price | money}}" /></div>
 	
             <!-- #IF {{product.images}} -->
     		<div class="product-photos">
                 <ul>
 					<!-- #FOREACH {{image in product.Images}} -->
-					<li><a rel="lightbox-tour" title="{{product.name | html_encode}} - {{product.price | money}}" href="{{image.url}}-640x640.jpg"><img src="{{image.url}}-75x75.jpg" alt="{{image.title | html_encode}}" /></a></li>
+					<li><a rel="lightbox-tour" title="{{product.name | html_encode}} - {{product.price | money}}" href="{{image.url}}?w=640&h=640&crop=false"><img src="{{image.url}}?w=75&h=75&crop=true" alt="{{image.title | html_encode}}" /></a></li>
 					<!-- #NEXT -->										
 				</ul>			
 			</div>
@@ -191,5 +191,5 @@
 
 
 <!-- #BLOCK for="script_content" -->
-<script type="text/javascript" src="http://static.merchfly.com/themes/vanilla/jquery.lightbox.js"></script>
+<script type="text/javascript" src="{{theme.files}}/jquery.lightbox.js"></script>
 <!-- #ENDBLOCK -->

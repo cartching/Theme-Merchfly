@@ -19,15 +19,11 @@
 <meta name="author" content="{{store.url}}" />
 <meta name="keywords" content="{{page.keywords | html_encode}}" />
 <meta name="description" content="{{page.description | html_encode}}" />
-<meta property="og:site_name" content="{{store | html_encode}}" />
-<meta property="og:title" content="{{page.title | html_encode}}" />
 
 <link rel="author" href="{{store.url}}" />
 <link rel="canonical" href="{{page.url}}" />
 <link rel="home" title="home" href="{{store.url}}" />
-<link rel="shortcut icon" href="{{store.files}}/favicon.ico" type="image/x-icon" />
-<!-- <link rel="stylesheet" type="text/css" href="http://static.merchfly.com/themes/vanilla/theme.css" media="screen" /> -->
-<link rel="stylesheet" type="text/css" href="/themes/merchfly/files/theme.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="{{theme.files}}/theme.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="{{store.files}}/custom.css" media="screen" />
 
 <script type="text/javascript" src="http://cachedcommons.org/cache/jquery/1.4.2/javascripts/jquery-min.js"></script>
@@ -260,8 +256,7 @@
 
 </div>
 
-<!--	<script type="text/javascript" src="http://static.merchfly.com/themes/vanilla/main.js"></script>	-->
-<script type="text/javascript" src="/themes/merchfly/files/main.js"></script>
+<script type="text/javascript" src="{{theme.files}}/main.js"></script>
 <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=cartchingapp"></script>
 
 <!-- #BLOCK name="script_content" -->

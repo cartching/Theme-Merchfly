@@ -36,7 +36,7 @@
         <div class="hproduct product-listitem {{product.slug}}">
         <div class="inner">
     
-            <div class="product-photo"><a title="{{product.name | html_encode}} / {{product.price | money}}" href="{{product.url}}" class="url" rel="product"><img src="{{product.image}}-240x240-90.jpg" alt="{{product.excerpt | html_encode}}" class="photo" /></a></div>
+            <div class="product-photo"><a title="{{product.name | html_encode}} / {{product.price | money}}" href="{{product.url}}" class="url" rel="product"><img src="{{product.image}}?w=240&h=240&crop=true" alt="{{product.excerpt | html_encode}}" class="photo" /></a></div>
     
             <p class="price">
                 <!-- #IF {{product.onsale}} -->
